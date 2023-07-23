@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -17,7 +18,7 @@ public class User implements UserDetails {
     private int id;
 
     @Column(name = "name")
-    private String name;
+    private String username;
 
     @Column(name = "age")
     private int age;
@@ -29,16 +30,20 @@ public class User implements UserDetails {
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles;
+    @JoinTable(name = "user_roles"
+                , joinColumns = @JoinColumn(name = "user_id")
+                , inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
     public User() {
     }
 
-    public User(String name, int age, String email, String password) {
-        this.name = name;
+    public User(String name, int age, String email, String password, Set<Role> roles) {
+        this.username = name;
         this.age = age;
         this.email = email;
         this.password = password;
+        this.roles = roles;
     }
 
     public void setPassword(String password) {
@@ -54,11 +59,11 @@ public class User implements UserDetails {
     }
 
     public String getName() {
-        return name;
+        return username;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.username = name;
     }
 
     public int getAge() {
@@ -89,7 +94,7 @@ public class User implements UserDetails {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", name='" + username + '\'' +
                 ", age=" + age +
                 ", email='" + email + '\'' +
                 '}';
@@ -107,7 +112,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return name;
+        return getName();
     }
 
     @Override
