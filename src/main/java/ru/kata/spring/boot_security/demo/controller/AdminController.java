@@ -5,16 +5,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
-import ru.kata.spring.boot_security.demo.service.UserServiceImpl;
+import ru.kata.spring.boot_security.demo.service.UserService;
 
 import java.util.Set;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-    private final UserServiceImpl userService;
+    private final UserService userService;
 
-    public AdminController(UserServiceImpl userService) {
+    public AdminController(UserService userService) {
         this.userService = userService;
     }
 
