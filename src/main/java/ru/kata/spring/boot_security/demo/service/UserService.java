@@ -21,4 +21,6 @@ public interface UserService {
     void update(int id, User udatedUser);
 
     List<Role> getAllRoles();
+
+    Role getRolebyName(String role);
 }

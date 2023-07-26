@@ -58,4 +58,9 @@ public class UserServiceImpl implements UserService {
         udatedUser.setId(id);
         userRepository.save(udatedUser);
     }
+
+    @Transactional
+    public Role getRolebyName(String name) {
+        return roleRepository.getRoleByName(name);
+    }
 }
