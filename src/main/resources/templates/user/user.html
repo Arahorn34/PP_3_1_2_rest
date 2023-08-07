@@ -66,37 +66,37 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-<!--<script src="../static/user.js"></script>-->
-<script>
-    const currentUserPanelData = document.getElementById("current_user_panel-data");
-    const currentAuthorisedUserData = document.getElementById("current_authorised_user-data");
-    let currentUser = () => {
-        fetch ("http://localhost:8080/api/user", {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(res => res.json())
-            .then(user => {
-                if (user != null) {
-                    currentUserPanelData.innerHTML = `
-                                <tr>
-                                    <td> ${user.id} </td>
-                                    <td> ${user.username} </td>
-                                    <td> ${user.age} </td>
-                                    <td> ${user.email} </td>
-                                    <td> ${user.roles.map((role) => role.name === "ROLE_USER" ? "Юзер" : "Админ")} </td>
-                                </tr>
-                        `
+<script src="user.js"></script>
+<!--<script>-->
+<!--    const currentUserPanelData = document.getElementById("current_user_panel-data");-->
+<!--    const currentAuthorisedUserData = document.getElementById("current_authorised_user-data");-->
+<!--    let currentUser = () => {-->
+<!--        fetch ("http://localhost:8080/api/user", {-->
+<!--            method: 'GET',-->
+<!--            headers: {-->
+<!--                'Content-Type': 'application/json'-->
+<!--            }-->
+<!--        })-->
+<!--            .then(res => res.json())-->
+<!--            .then(user => {-->
+<!--                if (user != null) {-->
+<!--                    currentUserPanelData.innerHTML = `-->
+<!--                                <tr>-->
+<!--                                    <td> ${user.id} </td>-->
+<!--                                    <td> ${user.username} </td>-->
+<!--                                    <td> ${user.age} </td>-->
+<!--                                    <td> ${user.email} </td>-->
+<!--                                    <td> ${user.roles.map((role) => role.name === "ROLE_USER" ? "Юзер" : "Админ")} </td>-->
+<!--                                </tr>-->
+<!--                        `-->
 
-                    currentAuthorisedUserData.innerHTML = `
-                    <p class="d-inline font-weight-bold">${user.email} с ролью ${user.roles.map((role) => role.name === "ROLE_USER" ? "Юзер" : "Админ")}</p>`
+<!--                    currentAuthorisedUserData.innerHTML = `-->
+<!--                    <p class="d-inline font-weight-bold">${user.email} с ролью ${user.roles.map((role) => role.name === "ROLE_USER" ? "Юзер" : "Админ")}</p>`-->
 
-                }
-            })
-    }
-    currentUser();
-</script>
+<!--                }-->
+<!--            })-->
+<!--    }-->
+<!--    currentUser();-->
+<!--</script>-->
 </body>
 </html>

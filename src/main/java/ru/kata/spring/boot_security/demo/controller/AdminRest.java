@@ -17,8 +17,7 @@ public class AdminRest {
 
     @GetMapping()
     public List<User> getAllUsers() {
-        List<User> users = userService.getAllUsers();
-        return users;
+        return userService.getAllUsers();
     }
 
     @GetMapping("/{id}")
@@ -32,9 +31,9 @@ public class AdminRest {
         return user;
     }
 
-    @PutMapping()
-    public User editUser(@RequestBody User user) {
-        userService.save(user);
+    @PutMapping("/{id}")
+    public User editUser(@RequestBody User user, @PathVariable ("id") int id) {
+        userService.update(id, user);
         return user;
     }
 
